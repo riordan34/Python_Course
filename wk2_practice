@@ -185,23 +185,62 @@ def longestDigitRun(n):
 def longestIncreasingRun(n):
     n = abs(n)
     long_run = 0
-    current_run = n%10
+    run = n%10
+    if n < 10:
+        long_run = n
     while n >= 10:
         next_digit = (n//10)%10
         if n%10 > next_digit:
-            current_run = current_run + next_digit * 10**math.ceil(math.log(next_digit,10)
-            if (current_run > long_run):
-                long_run = current_run
+            run = run + next_digit*10**math.ceil(math.log(run,10))
+            if run > long_run:
+                long_run = run
         else:
-            current_run = next_digit
+            run = next_digit
         n = n//10
     return long_run
 
+def reverse(n):
+    reverse = n%10
+    while (n >= 10):
+        digit = n//10%10
+        reverse = reverse*10 + digit
+        n = n//10
+    return reverse
+
 def nthPalindromicPrime(n):
-    return 42
+    i = 0
+    k = 1
+    while (i < n+1):
+        k += 1
+        k_temp = reverse(k)
+        if IsPrime(k):
+            if k == k_temp:
+                i += 1
+    return k
+
+def truncate(n):
+    left = n
+    trunc = 0
+    if n < 10:
+        trunc = 0
+    else:
+        while left >= 10:
+            left = left//10
+        trunc = n - left*10**(math.ceil(math.log(n,10))-1)
+    return trunc
 
 def nthLeftTruncatablePrime(n):
-    return 42
+    found = 0
+    guess = 1
+    while (found < n+1):
+        guess += 1
+        if IsPrime(guess):
+            guess2 = guess
+            while (truncate(guess2) > 0):
+                if IsPrime(truncate(guess2)):
+                    guess2 = truncate(guess2)
+                found += 1
+    return guess
 
 def nthCarolPrime(n):
     return 42
