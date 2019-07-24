@@ -234,47 +234,211 @@ def nthLeftTruncatablePrime(n):
     guess = 1
     while (found < n+1):
         guess += 1
-        if IsPrime(guess):
-            guess2 = guess
-            while (truncate(guess2) > 0):
-                if IsPrime(truncate(guess2)):
-                    guess2 = truncate(guess2)
-                found += 1
+        guess2 = guess
+        status = True
+        while (guess2 > 0):
+            if IsPrime(guess2):
+                guess2 = truncate(guess2)
+            else:
+                status = False
+                break
+        if status == True:
+            found += 1
     return guess
 
+def CarolPrime(n):
+    n = ((2**n-1)**2-2)
+    return n
+
 def nthCarolPrime(n):
-    return 42
+    found = 0
+    k = -1
+    guess = 0
+    while (found < n+1):
+        k += 1
+        guess = CarolPrime(k)
+        if IsPrime(guess):
+            found += 1
+    return guess
+
 
 #################################################
 # Thu Lecture
 #################################################
 
 def sumOfSquaresOfDigits(n):
-    return 42
+    sum = 0
+    while (n >= 10):
+        digit = n%10
+        sum += digit**2
+        n = n//10
+    sum += n**2
+    return sum
 
 def isHappyNumber(n):
-    return 42
+    i = 0
+    while (i < 1):
+        if n <= 0:
+            i +=1
+            return False
+        n = sumOfSquaresOfDigits(n)
+        if n == 1:
+            i += 1
+            return True
+        elif n == 4:
+            i =+ 1
+            return False
+
 
 def nthHappyNumber(n):
-    return 42
+    found = 0
+    guess = 0
+    while (found < n+1):
+        guess += 1
+        if isHappyNumber(guess):
+            found += 1
+    return guess
 
 def isHappyPrime(n):
-    return 42
+    if isHappyNumber(n):
+        if IsPrime(n):
+            return True
+        else:
+            return False
+    else: return False
 
 def nthHappyPrime(n):
-    return 42
+    found = 0
+    guess = 0
+    while (found < n+1):
+        guess += 1
+        if isHappyPrime(guess):
+            found += 1
+    return guess
 
 def mostFrequentDigit(n):
-    return 42
+    n = abs(n)
+    zero = 0
+    one = 0
+    two = 0
+    three = 0
+    four = 0
+    five = 0
+    six = 0
+    seven = 0
+    eight = 0
+    nine = 0
+    while (n > 0):
+        digit = n%10
+        if digit == 0:
+            zero += 1
+        elif digit == 1:
+            one += 1
+        elif digit == 2:
+            two += 1
+        elif digit == 3:
+            three += 1
+        elif digit == 4:
+            four += 1
+        elif digit == 5:
+            five += 1
+        elif digit == 6:
+            six += 1
+        elif digit == 7:
+            seven += 1
+        elif digit == 8:
+            eight += 1
+        elif digit == 9:
+            nine += 1
+        n = n//10
+    output = 0
+    counter = zero
+    if one > counter:
+        output = 1
+        counter = one
+    if two > counter:
+        output = 2
+        counter = two
+    if three > counter:
+        output = 3
+        counter = three
+    if four > counter:
+        output = 4
+        counter = four
+    if five > counter:
+        output = 5
+        counter = five
+    if six > counter:
+        output = 6
+        counter = six
+    if seven > counter:
+        output = 7
+        counter = seven
+    if eight > counter:
+        output = 8
+        counter = eight
+    if nine > counter:
+        output = 9
+        counter = nine
+    return output
+        
+        
+
+def isPowerfulNumber(n):
+    status = True
+    for factor in range(1,n+1):
+        if n%factor == 0:
+            if IsPrime(factor):
+                if n%(factor**2) != 0:
+                    status = False
+    return status
 
 def nthPowerfulNumber(n):
-    return 42
+    found = 0
+    guess = 0
+    while (found < n+1):
+        guess += 1
+        if isPowerfulNumber(guess):
+            found += 1
+    return guess
+
+def circularPrimeRotate(n):
+    length = math.ceil(math.log(n,10))
+    last = n%10
+    n = n//10 + last*10**(length-1)
+    return n
 
 def nthCircularPrime(n):
-    return 42
+    found = 0
+    guess = 0
+    while (found < n+1):
+        guess += 1
+        if IsPrime(guess):
+            i = 0
+            guess2 = guess
+            while(i < 1):
+                guess2 = circularPrimeRotate(guess2)
+                if guess2 == guess:
+                    i += 1
+                    found += 1
+                elif IsPrime(guess2) == False:
+                    break
+    return guess
 
 def findZeroWithBisection(f, x0, x1, epsilon):
-    return 42
+    if f(x0)*f(x1) > 0:
+        return None
+    xmid = (x0+x1)/2
+    if abs(f(xmid)) < epsilon:
+        return xmid
+    else:
+        while (abs(f(xmid)) > epsilon):
+            if f(xmid)*f(x0) > 0:
+                x0 = xmid
+            else:
+                x1 = xmid
+            xmid = (x0+x1)/2
+    return xmid
 
 ######################################################################
 # ignore_rest: The autograder will ignore all code below here
