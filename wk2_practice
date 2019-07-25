@@ -318,72 +318,20 @@ def nthHappyPrime(n):
 
 def mostFrequentDigit(n):
     n = abs(n)
-    zero = 0
-    one = 0
-    two = 0
-    three = 0
-    four = 0
-    five = 0
-    six = 0
-    seven = 0
-    eight = 0
-    nine = 0
-    while (n > 0):
-        digit = n%10
-        if digit == 0:
-            zero += 1
-        elif digit == 1:
-            one += 1
-        elif digit == 2:
-            two += 1
-        elif digit == 3:
-            three += 1
-        elif digit == 4:
-            four += 1
-        elif digit == 5:
-            five += 1
-        elif digit == 6:
-            six += 1
-        elif digit == 7:
-            seven += 1
-        elif digit == 8:
-            eight += 1
-        elif digit == 9:
-            nine += 1
-        n = n//10
-    output = 0
-    counter = zero
-    if one > counter:
-        output = 1
-        counter = one
-    if two > counter:
-        output = 2
-        counter = two
-    if three > counter:
-        output = 3
-        counter = three
-    if four > counter:
-        output = 4
-        counter = four
-    if five > counter:
-        output = 5
-        counter = five
-    if six > counter:
-        output = 6
-        counter = six
-    if seven > counter:
-        output = 7
-        counter = seven
-    if eight > counter:
-        output = 8
-        counter = eight
-    if nine > counter:
-        output = 9
-        counter = nine
-    return output
-        
-        
-
+    leader = 0
+    leader_count = 0
+    for digit in range(0,10):
+        n_loop = n
+        current_count = 0
+        while (n_loop>0):
+            if n_loop%10 == digit:
+                current_count += 1
+                if current_count > leader_count:
+                    leader = digit
+                    leader_count = current_count
+            n_loop = n_loop//10
+    return leader
+    
 def isPowerfulNumber(n):
     status = True
     for factor in range(1,n+1):
