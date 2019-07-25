@@ -36,32 +36,24 @@ def IsPrime(n):
             return False
     return True
 
+def rotate(n):
+    len_n = math.ceil(math.log(n,10))
+    last = n%10
+    n = n//10 + last*10**(len_n-1)
+    return n
+
 def isRotation(x, y):
     if x == y:
-        status = True
+        return True
     lenx = math.ceil(math.log(x,10))
-    leny = math.ceil(math.log(y,10))
-    if lenx != leny:
-        return False
-    while (x > 0):
-        x_check = x%10
-        count = math.ceil(math.log(y,10))
-        y_new = 0
-        while (y > 0):
-            y_check = y%10
-            if x_check == y_check:
-                count -= 1
-                y = y//10 + y_new*10**count
-                x = x//10
-                status = True
-                break
-            else:
-                count -= 1
-                y_new = y_new*10 + y_check
-                y = y//10
-            status = False
-    return status
-
+    tries = 0
+    while (tries <= lenx):
+        x = rotate(x)
+        if x == y:
+            return True
+        tries += 1
+    return False
+    
 def reverse(n):
     reverse = n%10
     while (n >= 10):
@@ -83,10 +75,91 @@ def nthEmirpsPrime(n):
     return guess
 
 def carrylessAdd(x1, x2):
-    return 42
+    if x2 > x1:
+        temp = x1
+        x1 = x2
+        x2 = temp
+    k = 0
+    sum = 0
+    while (x1 > 0):
+        x1_digit = x1%10
+        x2_digit = x2%10
+        add = x1_digit + x2_digit
+        add = (add%10)*10**k
+        sum += add
+        k += 1
+        x1 = x1//10
+        x2 = x2//10
+    return sum
+
+def isProperty309(n):
+    n = abs(n)**5
+    zero = 0
+    one = 0
+    two = 0
+    three = 0
+    four = 0
+    five = 0
+    six = 0
+    seven = 0
+    eight = 0
+    nine = 0
+    while (n > 0):
+        digit = n%10
+        if digit == 0:
+            zero += 1
+        elif digit == 1:
+            one += 1
+        elif digit == 2:
+            two += 1
+        elif digit == 3:
+            three += 1
+        elif digit == 4:
+            four += 1
+        elif digit == 5:
+            five += 1
+        elif digit == 6:
+            six += 1
+        elif digit == 7:
+            seven += 1
+        elif digit == 8:
+            eight += 1
+        elif digit == 9:
+            nine += 1
+        n = n//10
+    status = True
+    if zero == 0:
+        status = False
+    if one == 0:
+        status = False
+    if two == 0:
+       status = False
+    if three == 0:
+        status = False
+    if four == 0:
+        status = False
+    if five == 0:
+        status = False
+    if six == 0:
+        status = False
+    if seven == 0:
+        status = False
+    if eight == 0:
+       status = False
+    if nine == 0:
+        status = False
+    return status
+
 
 def nthWithProperty309(n):
-    return 42
+    found = 0
+    guess = roundHalfUp(123456789**.2)
+    while (found < n+1):
+        guess += 1
+        if isProperty309(guess):
+            found += 1
+    return guess
+    
 
 ######################################################################
 # ignore_rest: The autograder will ignore all code below here
@@ -140,7 +213,7 @@ def testNthWithProperty309():
 #################################################
 
 def testAll():
-    #testIsRotation()
+    testIsRotation()
     testNthEmirpsPrime()
     testCarrylessAdd()
     testNthWithProperty309()
