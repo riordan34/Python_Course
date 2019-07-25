@@ -53,8 +53,25 @@ def nthKaprekarNumber(n):
             found += 1
     return guess
 
+def trapArea(a,b,h):
+    area = (a+b)*(h/2)
+    return area
+
 def integral(f, a, b, N):
-    return 42
+    integral = 0
+    h = (b-a)/N
+    count = 0
+    x1 = a
+    x2 = a + h
+    while (count < N):
+       y1 = f(x1)
+       y2 = f(x2)
+       area = trapArea(y1,y2,h)
+       integral += area
+       x1 = x2
+       x2 += h
+       count += 1
+    return integral
 
 def nearestKaprekarNumber(n):
     delta_down = n - math.floor(n)
@@ -122,30 +139,49 @@ def carrylessMultiply(x1, x2):
         i += 1
     return product
 
-def isSmithNumber(n):
-    prime_sum = 0
-    maxFactor = roundHalfUp(n**0.5)
-    for factor in range(2,maxFactor+1):
-        if (n % factor == 0):
-            if IsPrime(factor):
-                prime_sum += factor
-            factor_pair = n//factor
-            if IsPrime(factor_pair):
-                prime_sum += factor_pair
-    print (prime_sum)
+def digitSum(n):
     digit_sum = 0
     while(n>0):
         digit = n%10
         digit_sum += digit
         n = n//10
-    print (digit_sum)
-    if prime_sum == digit_sum:
-        return True
-    return False
+    return digit_sum
+    
+def primeFactorSum(n):
+    sum = 0
+    while (not IsPrime(n)):
+        maxFactor = roundHalfUp(n**0.5)
+        for factor in range(2,maxFactor+1):
+            if (n % factor == 0):
+                if IsPrime(factor):
+                    sum += digitSum(factor)
+                    factor_pair = n//factor
+                    if IsPrime(factor_pair):
+                        sum += digitSum(factor_pair)
+                        n = factor_pair
+                        break
+                    else:
+                        n = factor_pair
+    return sum
+    
+
+def isSmithNumber(n):
+    status = False
+    digits = digitSum(n)
+    factors = primeFactorSum(n)
+    if digits == factors:
+        status = True
+    return status
 
 
 def nthSmithNumber(n):
-    return 42
+    found = 0
+    guess = 1
+    while (found < n +1):
+        guess += 1
+        if isSmithNumber(guess):
+            found += 1
+    return guess
 
 ##### Bonus #####
 
@@ -265,11 +301,11 @@ def testBonusPlay112():
 
 def testAll():
     testNthKaprekarNumber()
-    #testIntegral()
+    testIntegral()
     testNearestKaprekarNumber()
     testCarrylessMultiply()
     testNthSmithNumber()
-    testBonusPlay112()
+    #testBonusPlay112()
 
 def main():
     bannedTokens = (
