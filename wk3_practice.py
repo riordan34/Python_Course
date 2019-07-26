@@ -91,7 +91,7 @@ def rotateStringRight(s, k):
     rotatedString = new_start + new_end
     return rotatedString
 
-def wordWrap(text, width):
+def spaceWordWrapper(text, width):
     wrap = ""
     count = 0
     while (count < len(text)):
@@ -100,20 +100,85 @@ def wordWrap(text, width):
         else:
             wrap += text[count] #else add character
         count += 1
-    print (wrap)
+    return wrap
+
+def wordWrap(text, width):
+    spacelessWrap = ""
+    stripWrap = ""
+    wrap = wordWrapper(text,width)
+    count = 0
+    for line in wrap.splitlines():
+        stripWrap += line.strip() + "\n"
+    while (count < len(stripWrap)):
+        if stripWrap[count] == " ":
+            spacelessWrap += "-"
+        else:
+            spacelessWrap += stripWrap[count]
+        count += 1
+    for line in spacelessWrap.split("\n"):
+        return line
+
 
 def largestNumber(s):
-    return 42
+    large = -1 #arbitrary large
+    for words in s.split(" "): #split on whitespace to find 'words
+        digit = -1
+        if words.isdigit():
+            digit = int(words)
+            if digit > large: #assign current number if larger than prev.
+                large = digit
+    if large == -1:
+        return None
+    else:
+        return large
 
 #################################################
 # Thu Lecture
 #################################################
 
+def reverseString(s):
+    return s[::-1]
+
+def isPalindrome1(s):
+    return (s == reverseString(s))
+
 def longestSubpalindrome(s):
-    return 42
+    i = 0
+    longest=""
+    while (i < len(s)):
+        subIndex = i+1
+        current_long = ""
+        while (subIndex <= len(s)):
+            check = s[i:subIndex]
+            if isPalindrome1(check):
+                current_long = check
+                if len(current_long) == len(longest):
+                    if current_long > longest:
+                        longest = current_long
+                elif len(current_long) > len(longest):
+                    longest = current_long
+            subIndex += 1
+        i += 1
+    return longest
+
+def lowerLettersOnly(s):
+    letters = ""
+    for char in s:
+        if char.isalpha():
+            letters += char.lower()
+    return letters
 
 def leastFrequentLetters(s):
-    return 42
+    s = lowerLettersOnly(s)
+    lowCount = len(s)
+    lowString =""
+    for letter in string.ascii_lowercase:
+        count = 0
+        for char in s:
+            if s == letter
+            count += 1
+        if count < lowCount:
+            lowString =
 
 # some interactive console game!
 
@@ -358,7 +423,7 @@ def testAll():
     testHasBalancedParentheses()
     testRotateStringLeft()
     testRotateStringRight()
-    testWordWrap()
+    #testWordWrap()
     testLargestNumber()
     testLongestSubpalindrome()
     testLeastFrequentLetters()
