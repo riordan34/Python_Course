@@ -91,32 +91,24 @@ def rotateStringRight(s, k):
     rotatedString = new_start + new_end
     return rotatedString
 
-def spaceWordWrapper(text, width):
-    wrap = ""
-    count = 0
-    while (count < len(text)):
-        if count != 0 and (count)%width == 0: #avoid starting with line break
-            wrap += "\n" + text[count]  #add linebreak if at width
+def wordWrapSpaces(text,width):
+    wrappedString =''
+    i = 0
+    while (i < len(text)):
+        if i > 0 and i%width == 0:
+            wrappedString += '\n' + text[i]
         else:
-            wrap += text[count] #else add character
-        count += 1
-    return wrap
+            wrappedString += text[i]
+        i += 1
+    return wrappedString
 
 def wordWrap(text, width):
-    spacelessWrap = ""
-    stripWrap = ""
-    wrap = wordWrapper(text,width)
-    count = 0
-    for line in wrap.splitlines():
-        stripWrap += line.strip() + "\n"
-    while (count < len(stripWrap)):
-        if stripWrap[count] == " ":
-            spacelessWrap += "-"
-        else:
-            spacelessWrap += stripWrap[count]
-        count += 1
-    for line in spacelessWrap.split("\n"):
-        return line
+    spacelessWrap =''
+    wrappedString = wordWrapSpaces(text,width)
+    for line in wrappedString.splitlines():
+        spacelessWrap += line.strip() + '\n'
+    spacelessWrap = spacelessWrap[:-1].replace(" ","*")
+    return spacelessWrap
 
 
 def largestNumber(s):
@@ -169,16 +161,22 @@ def lowerLettersOnly(s):
     return letters
 
 def leastFrequentLetters(s):
-    s = lowerLettersOnly(s)
-    lowCount = len(s)
-    lowString =""
-    for letter in string.ascii_lowercase:
-        count = 0
-        for char in s:
-            if s == letter
-            count += 1
-        if count < lowCount:
-            lowString =
+    s = lowerLettersOnly(s) #get only lowercase letters
+    lowCount = len(s) #max times a letter can appear
+    lowString = '' #blank answer
+    lowLetter = '' #temp blank for possible replacement
+    for letter in string.ascii_lowercase: #check all lower case alphas
+        count = s.count(letter) #apparence of loweralpha in string
+        #letter must appear at least once
+        if count >=1 and count == lowCount: #append to answer and temp if equal
+            lowString += letter
+            lowLetter += letter
+        elif count >= 1 and count < lowCount: #replace answer and temp if less
+            lowString = lowString.replace(lowLetter,letter)
+            lowLetter = letter
+            lowCount = count
+    return lowString
+
 
 # some interactive console game!
 
@@ -186,26 +184,155 @@ def leastFrequentLetters(s):
 # Extra Practice
 #################################################
 
+def unique(s):
+    uniqueChars = ''#blank string for unique chars only
+    for letter in string.ascii_letters: #check upper and lower appearences
+        if letter in s:
+            uniqueChars += letter #append char if it appears in string
+    return uniqueChars
+
+
 def sameChars(s1, s2):
-    return 42
+    if not isinstance(s1,str) and isinstance(s2,str):
+        return False #false if one or both not strings
+    uniqueS1 = unique(s1)
+    uniqueS2 = unique(s2)
+    return uniqueS1 == uniqueS2 #check unique strings against each other
 
 def mostFrequentLetters(s):
-    return 42
+    s = lowerLettersOnly(s) #get only lowercase letters
+    highCount = 0 #initial tally of max
+    highString = '' #blank answer
+    highLetter = '' #temp blank for possible replacement
+    for letter in string.ascii_lowercase: #check all lower case alphas
+        count = s.count(letter) #apparence of loweralpha in string
+        #letter must appear at least once
+        if count >= 1 and count == highCount: #append to answer and temp if equal
+            highString += letter
+            highLetter += letter
+        elif count >= 1 and count > highCount: #replace answer and temp if more
+            highString = highString.replace(highLetter,letter)
+            highLetter = letter
+            highCount = count
+    return highString.upper()
 
 def areAnagrams(s1, s2):
-    return 42
+    status = True
+    s1 = lowerLettersOnly(s1) #get only lowercase letters
+    s2 = lowerLettersOnly(s2)
+    for letter in string.ascii_lowercase:
+        #if count of any letter is not the same, return false and break
+        if s1.count(letter) != s2.count(letter):
+            status = False
+            break
+    return status
+
 
 def collapseWhitespace(s):
-    return 42
+    collapsedString = ''
+    i = 0 #string index
+    while (i < len(s)):
+        #add char to new string if not whitespace
+        if s[i] not in string.whitespace:
+            collapsedString += s[i]
+            i += 1
+        #add space to end new string if is whitespace
+        elif s[i] in string.whitespace and i == len(s)-1:
+            collapsedString += " "
+            i += 1
+        #add space to new string if is whitespace and next char is not whitespace
+        elif s[i] in string.whitespace and s[i+1] not in string.whitespace:
+            collapsedString += " "
+            i += 1
+        #else do not add to collapsedstring, move to next original char
+        else:
+            i += 1
+    return collapsedString
+
+def openReplace(s1,s2):
+    #helper function: add replacement string
+    #if string to be replaced is ''
+    stringReplace = ''
+    for char in s1:
+        stringReplace += s2 + char
+    stringReplace += s2
+    return stringReplace
 
 def replace(s1, s2, s3):
-    return 42
+    stringReplace = ''
+    length = len(s2) #length of substring to check
+    if length == 0:
+        return openReplace(s1,s3)
+    i = 0
+    while (i < len(s1)-length): #stay in range
+        #replace if substring1 = string 2
+        if s1[i:i+length] == s2:
+            stringReplace += s3
+            i += length #jump over all replaced chars
+        #ammend substring1[i] otherwise
+        else:
+            stringReplace += s1[i]
+            i += 1
+    #check end of string1 with same rules as above
+    remaining = i - len(s1)
+    if s1[remaining:] == s2:
+        stringReplace += s3
+    else:
+        stringReplace += s1[remaining:]
+    return stringReplace
 
 def encodeOffset(s, d):
-    return 42
+    encodedString = ''
+    lowerLookup = string.ascii_lowercase
+    upperLookup = string.ascii_uppercase
+    d=d%26 #multiple loops through alphabet
+    i = 0
+    while (i < len(s)):
+        if s[i].islower():
+            #find index in list of lowercase letters
+            searchIndex = string.ascii_lowercase.find(s[i])
+            #Keep seach index less then length of list
+            searchIndex = (searchIndex + d)%26
+            #append index + d place from lowercase
+            encodedString += string.ascii_lowercase[searchIndex]
+        #same approach but for uppercase letters
+        elif s[i].isupper():
+            searchIndex = string.ascii_uppercase.find(s[i])
+            searchIndex = (searchIndex + d)%26
+            encodedString += string.ascii_uppercase[searchIndex]
+        #append original if not lower or uppercase
+        #i.e. if not a letter
+        else:
+            encodedString += s[i]
+        i += 1
+    return encodedString
+
 
 def decodeOffset(s, d):
-    return 42
+    decodedString = ''
+    lowerLookup = string.ascii_lowercase
+    upperLookup = string.ascii_uppercase
+    d=d%26 #multiple loops through alphabet
+    i = 0
+    while (i < len(s)):
+        if s[i].islower():
+            #find index in list of lowercase letters
+            searchIndex = string.ascii_lowercase.find(s[i])
+            #Keep seach index less then length of list
+            searchIndex = (searchIndex - d)%26
+            #append index + d place from lowercase
+            decodedString += string.ascii_lowercase[searchIndex]
+        #same approach but for uppercase letters
+        elif s[i].isupper():
+            searchIndex = string.ascii_uppercase.find(s[i])
+            searchIndex = (searchIndex - d)%26
+            decodedString += string.ascii_uppercase[searchIndex]
+        #append original if not lower or uppercase
+        #i.e. if not a letter
+        else:
+            decodedString += s[i]
+        i += 1
+    return decodedString
 
 def encrypt(msg, pwd):
     return 42
@@ -423,7 +550,7 @@ def testAll():
     testHasBalancedParentheses()
     testRotateStringLeft()
     testRotateStringRight()
-    #testWordWrap()
+    testWordWrap()
     testLargestNumber()
     testLongestSubpalindrome()
     testLeastFrequentLetters()
