@@ -334,11 +334,62 @@ def decodeOffset(s, d):
         i += 1
     return decodedString
 
+def uppercaseReturn(s):
+    upper = ''
+    i = 0
+    while (i < len(s)):
+        if s[i].isalpha():
+            upper += s[i].upper()
+        i += 1
+    return upper
+
+def passwordShift(s):
+    shift = ''
+    search = string.ascii_lowercase
+    for char in s:
+        shift += str(search.find(char))
+    return shift
+
 def encrypt(msg, pwd):
-    return 42
+    if not pwd.islower():
+        return 'password must be all lowercase'
+    encrypt = ''
+    msg = uppercaseReturn(msg)
+    search = string.ascii_uppercase
+    #make pwdShift long enough to account for all chars in msg
+    pwd = pwd * math.ceil(len(msg)/len(pwd))
+    i = 0
+    while (i < len(msg)):
+        originalChar = msg[i] #unencrypted Character
+        shift = int(string.ascii_lowercase.find(pwd[i])) #encryption shift
+        #find original location of unencrypted char
+        originalIndex = search.find(originalChar)
+        #new index, account for loops through
+        newIndex = (originalIndex + shift)%26
+        #find encrypted char from newIndex, append to encrypted string
+        encrypt += search[newIndex]
+        i += 1
+    return encrypt
 
 def decrypt(msg, pwd):
-    return 42
+    if not pwd.islower():
+        return 'password must be all lowercase'
+    decrypt = ''
+    search = string.ascii_uppercase
+    #make pwdShift long enough to account for all chars in msg
+    pwd = pwd * math.ceil(len(msg)/len(pwd))
+    i = 0
+    while (i < len(msg)):
+        originalChar = msg[i] #unencrypted Character
+        shift = int(string.ascii_lowercase.find(pwd[i])) #encryption shift
+        #find original location of unencrypted char
+        originalIndex = search.find(originalChar)
+        #new index, account for loops through
+        newIndex = (originalIndex - shift)%26
+        #find encrypted char from newIndex, append to encrypted string
+        decrypt += search[newIndex]
+        i += 1
+    return decrypt
 
 ######################################################################
 # ignore_rest: The autograder will ignore all code below here
