@@ -49,10 +49,10 @@ def patternedMessage(msg, pattern):
 
 def bestStudentAndAvg(gradebook):
     highStudent = ''
-    highAvg = 0
+    highAvg = -1000
     for line in gradebook.splitlines():
-        if line[0] == '#' or line[0] == ' ':
-            break #ignore lines that aren't names/numbers
+        if len (line) == 0 or line[0] == '#':
+            continue #ignore lines that aren't names/numbers
         else:
             currentStudent = '' #get name of current student
             currentTotal = 0 #for summing all grades
@@ -60,14 +60,14 @@ def bestStudentAndAvg(gradebook):
             for entry in line.split(','):
                 if entry.isalpha():
                     currentStudent = entry #record current Student
-                elif entry.isdigit():
-                    currentTotal += entry
+                else:
+                    currentTotal += int(entry)
                     entries += 1
             avgScore = currentTotal/entries #calculate Average
             if avgScore > highAvg: #if it's the highest
-                highAvg = avgScore #make high score
+                highAvg = roundHalfUp(avgScore) #make high score
                 highStudent = currentStudent #record students name
-    return(highStudent+':'+str(highScore))
+    return ('%s:%d' % (highStudent, highAvg))
 
 ###### BONUS #######
 
@@ -222,7 +222,6 @@ betty,88
     gradebook   =   """
 #   ignore  blank   lines   and lines   starting    with    #'s
 wilma,93,95
-
 fred,80,85,90,95,100
 betty,88
 """
@@ -387,7 +386,7 @@ def main():
         'open,property,set,' +
         'setattr,slice,sorted,staticmethod,super,tuple,' +
         'type,vars,zip,importlib,imp,{,}')
-    #cs112_s17_linter.lint(bannedTokens=bannedTokens) # check style rules
+    cs112_s17_linter.lint(bannedTokens=bannedTokens) # check style rules
     testAll()
 
 if __name__ == '__main__':
