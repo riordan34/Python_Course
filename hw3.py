@@ -71,8 +71,40 @@ def bestStudentAndAvg(gradebook):
 
 ###### BONUS #######
 
-def topLevelFunctionNames(code): return 42
-def getEvalSteps(expr): return 42
+def topLevelFunctionNames(code):
+
+def evalExponents(expr):
+    i = expr.find('**') #get index of applicable operator
+    while (i >= 1): #only loop while the operator exists
+        result = 0
+        pre = i - 1 #look backwards to see where number starts
+        while (True):
+            if exp[pre-1].isdigit():
+                pre -= 1
+            else:
+                break
+        post = i + 3
+        while (True):
+            if exp[post+1].isdigit():
+                post += 1
+            else:
+                break
+        result = int(expr[pre:i])**int(expr[i+2:post])
+        expr = expr[:pre]+str(result)+expr[post:]
+        i = expr.find('**')
+    return expr
+
+
+def getEvalSteps(expr):
+    evalExpr = expr + ' = '
+    if (expr.find("**") > 0):
+        evalExpr += evalExponents(expr)
+    return evalExpr
+
+
+
+
+
 def bonusEncode1(msg): return 42
 def bonusDecode1(msg): return 42
 def bonusEncode2(msg): return 42
@@ -84,12 +116,71 @@ def bonusDecode3(msg): return 42
 # ignore_rest: The autograder will ignore all code below here
 ######################################################################
 
+
+
+
 #################################################
 # playPig (be sure this is below the # ignore_rest line!
 #################################################
+import random
+
+def turnSequence(score,winning):
+    needed = winning - score #necessary remaining points to win
+    turnTotal = 0
+    while (True):
+        decision = input ('\nWould you like to Roll or Hold?\n')
+        if decision.lower() == 'hold':
+            break #end turn if hold is selected
+        if decision.lower() == 'roll':
+            roll = random.randint(1,6)
+            #end turn and reset turn total to 0 if 1 is rolled
+            if roll == 1:
+                turnTotal = 0
+                #return roll results
+                print ('\nSorry, you rolled a %d\n' %roll)
+                break
+            else:
+                turnTotal += roll
+                #return roll results
+                print ('\nYou rolled a %d. Your turn total is: %d\n' %(roll, turnTotal))
+                if turnTotal >= needed:
+                    break
+    return turnTotal
+
+
 
 def playPig():
-    print("playPig() not yet implemented.")
+    print("Welcome to Pig\n")
+    winningScore = int(input ('What score would you like to play to?\n'))
+    #initial scores are 0
+    player1Score = player2Score = 0
+    turn = 0
+    winner = ''
+    while (True):
+        #print socre
+        print ('\nPlayer 1: %d -- Player 2: %d\n' % (player1Score, player2Score))
+        #if 'turn' is even, player 1 turn, else player 2
+        if turn%2 == 0:
+            print ('It is player 1\'s turn')
+            #run turn sequence
+            outcome = turnSequence(player1Score,winningScore)
+            player1Score += outcome #add turn sequence to total
+            #if new total is above limit, end game
+            if player1Score >= winningScore:
+                winner = 'Player 1'
+                break
+        else:
+            #repeat above for player 2
+            print ('It is player 2\'s turn')
+            outcome = turnSequence(player2Score,winningScore)
+            player2Score += outcome
+            if player2Score >= winningScore:
+                winner = 'Player 2'
+                break
+        turn += 1 #go to next turn after sequence if winning score not met
+    print ('\nPlayer 1: %d -- Player 2: %d\n' % (player1Score, player2Score))
+    print ('Congratulations %s! You are the winner!' %winner)
+
 
 #################################################
 # Test Functions
@@ -386,7 +477,7 @@ def main():
         'open,property,set,' +
         'setattr,slice,sorted,staticmethod,super,tuple,' +
         'type,vars,zip,importlib,imp,{,}')
-    cs112_s17_linter.lint(bannedTokens=bannedTokens) # check style rules
+    #cs112_s17_linter.lint(bannedTokens=bannedTokens) # check style rules
     testAll()
 
 if __name__ == '__main__':
