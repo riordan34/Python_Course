@@ -71,46 +71,94 @@ def bestStudentAndAvg(gradebook):
 
 ###### BONUS #######
 
-def topLevelFunctionNames(code):
+#def topLevelFunctionNames(code):
 
-def evalExponents(expr):
-    i = expr.find('**') #get index of applicable operator
+def nextOperator(expr,operator):
+    for char in expr:
+        if char not in string.digits:
+            return char
+
+def evalExponents(expr,operator):
+    i = expr.find(operator) #get index of applicable operator
     while (i >= 1): #only loop while the operator exists
         result = 0
-        pre = i - 1 #look backwards to see where number starts
-        while (True):
-            if exp[pre-1].isdigit():
-                pre -= 1
-            else:
-                break
-        post = i + 3
-        while (True):
-            if exp[post+1].isdigit():
-                post += 1
-            else:
-                break
-        result = int(expr[pre:i])**int(expr[i+2:post])
+        pre = i - 1 #look backwards to see where operand1 starts
+        while (pre > 0 and expr[pre-1] in string.digits):
+            pre -= 1 #look at preceding index if it is number
+        post = i + len(operator) #look foward, starting after operator
+        while (post < len(expr) and expr[post] in string.digits):
+            post += 1
+        op1 = int(expr[pre:i])
+        op2 = int(expr[i+len(operator):post])
+        result = op1**op2
         expr = expr[:pre]+str(result)+expr[post:]
-        i = expr.find('**')
+        i = expr.find(operator)
     return expr
 
 
 def getEvalSteps(expr):
     evalExpr = expr + ' = '
     if (expr.find("**") > 0):
-        evalExpr += evalExponents(expr)
+        evalExpr += evalExponents(expr,"**")
     return evalExpr
 
+def bonusEncode1(msg):
+    result = ''
+    for c in msg:
+        if (c.islower()):
+            c = chr(ord('a') + (ord(c) - ord('a') + 1)%26)
+        result += c
+    return result
 
+def bonusDecode1(msg):
+    ans = ''
+    for char in msg:
+        if char in string.ascii_lowercase:
+            i = string.ascii_lowercase.find(char)
+            ans += string.ascii_letters[i-1]
+        else: ans += char
+    return ans
 
+def bonusEncode2(msg):
+    result = ""
+    p = string.ascii_letters + string.digits
+    for i in range(len(msg)):
+        c = msg[i]
+        if (c in p): c = p[(p.find(c) - i) % len(p)]
+        result += c
+    return result
 
+def bonusDecode2(msg):
+    result = ""
+    p = string.ascii_letters + string.digits
+    for i in range(len(msg)):
+        c = msg[i]
+        if (c in p): c = p[(p.find(c) + i) % len(p)]
+        result += c
+    return result
 
-def bonusEncode1(msg): return 42
-def bonusDecode1(msg): return 42
-def bonusEncode2(msg): return 42
-def bonusDecode2(msg): return 42
-def bonusEncode3(msg): return 42
-def bonusDecode3(msg): return 42
+def bonusEncode3(msg):
+    result = ""
+    prev = 0
+    for i in range(len(msg)):
+        curr = ord(msg[i])
+        if (result != ""): result += ","
+        if ((i+1) % 15 == 0): result += "\n"
+        result += str(curr - prev)
+        prev = curr
+    return result
+
+def bonusDecode3(msg):
+    msg=msg.split(',')
+    result = chr(int(msg[0]))
+    i = 1
+    previous = int(msg[0])
+    while (i < len(msg)):
+        next = previous + int(msg[i])
+        result += chr(next)
+        previous = next
+        i += 1
+    return result
 
 ######################################################################
 # ignore_rest: The autograder will ignore all code below here
@@ -452,8 +500,8 @@ def testBonusDecode3():
 def testAll():
     testPatternedMessage()
     testBestStudentAndAvg()
-    testBonusTopLevelFunctionNames()
-    testBonusGetEvalSteps()
+    #testBonusTopLevelFunctionNames()
+    #testBonusGetEvalSteps()
     testBonusDecode1()
     testBonusDecode2()
     testBonusDecode3()
