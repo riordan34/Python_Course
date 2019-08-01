@@ -73,35 +73,116 @@ def bestStudentAndAvg(gradebook):
 
 #def topLevelFunctionNames(code):
 
-def nextOperator(expr,operator):
-    for char in expr:
-        if char not in string.digits:
-            return char
+### Get Eval Functions ###
+def getPreOperand(expr,i):
+    pre = i - 1 #look backwards to see where operand1 starts
+    while (pre > 0 and expr[pre-1] in string.digits):
+        pre -= 1 #look at preceding index if it is number
+    return pre
 
-def evalExponents(expr,operator):
-    i = expr.find(operator) #get index of applicable operator
-    while (i >= 1): #only loop while the operator exists
-        result = 0
-        pre = i - 1 #look backwards to see where operand1 starts
-        while (pre > 0 and expr[pre-1] in string.digits):
-            pre -= 1 #look at preceding index if it is number
-        post = i + len(operator) #look foward, starting after operator
-        while (post < len(expr) and expr[post] in string.digits):
-            post += 1
-        op1 = int(expr[pre:i])
-        op2 = int(expr[i+len(operator):post])
-        result = op1**op2
-        expr = expr[:pre]+str(result)+expr[post:]
-        i = expr.find(operator)
+def getPostOperand(expr,i,operator):
+    post = i + len(operator) #look foward, starting after operator
+    while (post < len(expr) and expr[post] in string.digits):
+        post += 1
+    return post
+
+def nextAddSubtractIndex(expr):
+    i = 0
+    index = -1 #set to negative 1 initially
+    while (i < len(expr)):
+        if expr[i] == '+' or expr[i] == '-':
+            index = i #find first occurence and and set that as index
+            break
+        i += 1
+    return index #return index, or negative one if it doesn't exist
+
+def nextMultDivideIndex(expr):
+    i = 0
+    index = -1 #set to negative 1 initially
+    while (i < len(expr)):
+        if expr[i] == '*' or expr[i] == '/' or expr[i] == '%':
+            index = i #find first occurence and and set that as index
+            break
+        i += 1
+    return index #return index, or negative one if it doesn't exist
+
+def evalMultDivide(expr):
+    i = getMultDivideIndex(expr)
+    result = 0
+    operator = expr[i]
+    if expr[i+1] == '/':#if next index is slash, then int division
+        operator = '//'
+    pre = getPreOperand(expr,i) #get operand before and after operator
+    post = getPostOperand(expr,i,operator)
+    op1 = int(expr[pre:i])
+    op2 = int(expr[i+len(operator):post])
+    if (operator == '//'): #go through possibilities of operators
+        result = op1//op2
+    elif (operator == '/'):
+        result = op1/op2
+    elif (operator == '*'):
+        result = op1*op2
+    else:
+        result = op1%op2
+    expr = expr[:pre]+str(result)+expr[post:]
+    return expr
+
+def evalAddSubtract(expr):
+    i = nextAddSubtractIndex(expr) #same concept as mult divide
+    result = 0
+    pre = getPreOperand(expr,i)
+    post = getPostOperand(expr,i,"+")
+    op1 = int(expr[pre:i])
+    op2 = int(expr[i+1:post])
+    if (expr[i] == '+'):
+        result = op1+op2
+    else:
+        result = op1-op2
+    expr = expr[:pre]+str(result)+expr[post:]
+    return expr
+
+def evalExponents(expr,i):
+    result = 0 #same concept as mult divide
+    pre = getPreOperand(expr,i)
+    post = getPostOperand(expr,i,"**")
+    op1 = int(expr[pre:i])
+    op2 = int(expr[i+2:post])
+    result = op1**op2
+    expr = expr[:pre]+str(result)+expr[post:]
     return expr
 
 
 def getEvalSteps(expr):
+    steps = 0
+    leadIndent = len(expr)*' '+' = '
     evalExpr = expr + ' = '
-    if (expr.find("**") > 0):
-        evalExpr += evalExponents(expr,"**")
+    while (expr.find("**") > 0):
+        expr = evalExponents(expr,expr.find('**'))
+        if steps == 0:
+            evalExpr += expr
+        else:
+            evalExpr +='\n'+leadIndent+expr
+        steps += 1
+    while (nextMultDivideIndex(expr) > 0):
+        expr = evalMultDivide(expr)
+        if steps == 0:
+            evalExpr += expr
+        else:
+            evalExpr +='\n'+leadIndent+expr
+        steps += 1
+    while (nextAddSubtractIndex(expr) > 0):
+        expr = evalAddSubtract(expr)
+        if steps == 0:
+            evalExpr += expr
+        else:
+            evalExpr +='\n'+leadIndent+expr
+        steps += 1
+    if steps == 0:
+        evalExpr += expr
     return evalExpr
 
+
+######### Bonus Encode/Decode section ######
 def bonusEncode1(msg):
     result = ''
     for c in msg:
@@ -501,7 +582,7 @@ def testAll():
     testPatternedMessage()
     testBestStudentAndAvg()
     #testBonusTopLevelFunctionNames()
-    #testBonusGetEvalSteps()
+    testBonusGetEvalSteps()
     testBonusDecode1()
     testBonusDecode2()
     testBonusDecode3()
