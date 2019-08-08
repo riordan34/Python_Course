@@ -127,13 +127,75 @@ def getData(s):
     if total == 0:
         return False #return false if no data
     else:
-        vPercent = roundHalfUp(v/total*100)
-        cPercent = roundHalfUp(c/total*100)
-        otherPercent = roundHalfUp(other/total*100)
+        vPercent = (v/total*100)
+        cPercent = (c/total*100)
+        otherPercent = (other/total*100)
         return (v,vPercent,c,cPercent,other,otherPercent,total)
 
-def drawVowelArc(canvas,box,start,extent):
-        canvas.create_arc(box, start=start, extent=extent, fill="pink")
+def drawText(canvas,angle,box,text):
+    r = (box[0] - box[2])/4 #x1-x2 /4 is half of big circle radius
+    angle = (angle * (math.pi/180)) #convert to radians for trig
+    cx = box[2]/2 #center x
+    cy = box[3]/2 #center y
+    textX = cx - r * math.cos(angle)
+    textY = cy + r * math.sin(angle)
+    canvas.create_text(textX, textY, text=text,font='Arial 10 bold')
+
+def drawVowelArc(canvas,box,parameters,start):
+    ArcLength = 0
+    Count = parameters[0]
+    Percent = parameters[1]
+    totalChar = parameters[2]
+    if (Count != 0):   #if there are vowels
+        Text = 'vowels (%d of %d, %d' %(Count,totalChar,Percent)+'%)'
+        #create circle if 100%
+        if (Percent == 100):
+            canvas.create_oval(box, fill='pink')
+            canvas.create_text(box[2]/2, box[3]/2,
+                        text=Text, font="Arial 12 bold")
+        else:
+            ArcLength = Percent/100*360 #arc Length
+            canvas.create_arc(box, start=start, extent=ArcLength, fill="pink")
+            textAngle = (start + ArcLength/2)
+            drawText(canvas,textAngle,box,Text)
+    return ArcLength
+
+def drawConsArc(canvas,box,parameters,start):
+    ArcLength = 0
+    Count = parameters[0]
+    Percent = parameters[1]
+    Char = parameters[2]
+    if (Count != 0):   #if there are vowels
+        Text = 'consonents (%d of %d, %d' %(Count,Char,Percent)+'%)'
+        #create circle if 100%
+        if (Percent == 100):
+            canvas.create_oval(box, fill='cyan')
+            canvas.create_text(box[2]/2, box[3]/2,
+                        text=Text, font="Arial 12 bold")
+        else:
+            ArcLength = Percent/100*360 #arc Length
+            canvas.create_arc(box, start=start, extent=ArcLength, fill="cyan")
+            textAngle = (start + ArcLength/2)
+            drawText(canvas,textAngle,box,Text)
+    return ArcLength
+
+def drawOtherArc(canvas,box,parameters,start):
+    ArcLength = 0
+    Count = parameters[0]
+    Percent = parameters[1]
+    Char = parameters[2]
+    if (Count != 0):   #if there are others
+        Text = 'other (%d of %d, %d' %(Count,Char,Percent)+'%)'
+        #create circle if 100%
+        if (Percent == 100):
+            canvas.create_oval(box, fill='lightGreen')
+            canvas.create_text(box[2]/2, box[3]/2,
+                        text=Text, font="Arial 12 bold")
+        else:
+            ArcLength = Percent/100*360 #arc Length
+            canvas.create_arc(box, start=start, extent=ArcLength, fill="lightGreen")
+            textAngle = (start + ArcLength/2)
+            drawText(canvas,textAngle,box,Text)
 
 def makeLetterTypePieChart(text, winWidth=500, winHeight=500):
     params = getData(text)
@@ -143,24 +205,19 @@ def makeLetterTypePieChart(text, winWidth=500, winHeight=500):
     if params == False: #if no data, return no data
         canvas.create_text(winWidth/2, winHeight/2,
                        text="No data to display", font="Arial 20 bold")
-    minDim = min(winWidth,winHeight) #find min dimension
-    boxParams=(0.05*minDim,0.05*minDim,0.95*minDim, 0.95*minDim)
-    #params structure = (vowels, %, consonents, %, other, %, total)
-    if params[0] != 0:   #if there are vowels
-        vText = 'vowels (%d of %d, %d' %(params[0],params[6],params[1])+'%)'
-        if params[1] == 100: #create circle if 100%
-            canvas.create_oval(boxParams, fill='pink')
-        else:
-            vArcLength = params[1]/100*360 #arc Length
-            drawVowelArc(canvas,boxParams,90,vArcLength)
-    if params[2] != 0:   #if there are consonents
-        start = 90 + vArcLength
-        cArcLength = params[3]/100*360
-        canvas.create_arc(boxParams, start=start, extent=cArcLength, fill="cyan")
-    if params[4] != 0:   #if there are others
-        start = 90 + vArcLength + cArcLength
-        arcLength = params[5]/100*360
-        canvas.create_arc(boxParams, start=start, extent=arcLength, fill="lightGreen")
+    else:
+        minDim = min(winWidth,winHeight) #find min dimension
+        boxParams=(0.05*minDim,0.05*minDim,0.95*minDim, 0.95*minDim)
+        #params structure = (vowels, %, consonents, %, other, %, total)
+        #helper functions to draw arcs
+        vowelParams = [params[0],params[1],params[6]]
+        drawVowelArc(canvas,boxParams,vowelParams,90)
+        consStart = drawVowelArc(canvas,boxParams,vowelParams,90)+90
+        consParams = [params[2],params[3],params[6]]
+        drawConsArc(canvas,boxParams,consParams,consStart)
+        otherStart = drawConsArc(canvas,boxParams,consParams,consStart) + consStart
+        otherParams = [params[4],params[5],params[6]]
+        drawOtherArc(canvas,boxParams,otherParams,otherStart)
     root.mainloop()
 
 
