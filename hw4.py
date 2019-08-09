@@ -80,12 +80,76 @@ def runSimpleProgram(program, args):
 from tkinter import *
 import math
 
+def printTortoiseProgram(canvas,program):
+    commands = program.split('\n') #split the program by new line
+    yText = 10 #initial line
+    for command in commands: #read lines one at a time
+        canvas.create_text(10,yText,text=command,fill='gray',font='Arial 10',anchor=W)
+        yText += 15 #drop 15 pixels for new line
+
+def actionWord(s):
+    #get the first word in a string with spaces
+    word = ''
+    for char in s:
+        if not char.isspace(): #if it's not a space, append to output word
+            word += char
+        else:
+            break #end loop if it is space
+    return word
+
+def quantityWord(s):
+    word =''
+    action = actionWord(s)
+    i= len(action)+1 #index, start after action word AND space
+    while (i < len(s)): #only go for length of string
+        if not s[i].isspace():
+            word += s[i] #append character to word if not space
+            i += 1
+        else:
+            break
+    return word
+
+def drawAction(canvas,color,position,distance,angle):
+    xC = position[0] #starting x-coordinate
+    yC = position [1] #starting y-coordinate
+    newXC = xC + distance*math.cos(angle) #end x-coord
+    newYC = yC - distance*math.sin(angle) #end y-coord
+    if color != 'none': #only draw if color is not none
+        canvas.create_line(xC,yC,newXC,newYC,fill=color,width=4)
+    return (newXC,newYC) #return new X and Y regardless
+
+def tortoiseAction(canvas, command, color, position, angle):
+    distance = 0 #in case only color changes
+    action = actionWord(command)
+    quantity = quantityWord(command)
+    if action == 'color': #if command is color
+        color = quantity #set new color
+    elif action == 'left': #if command is left
+        angle += (math.pi/180)*int(quantity) #move radians counterclockwise
+    elif action == 'right':
+        angle -= (math.pi/180)*int(quantity) #move radians clockwise
+    elif action == 'move': #if command is move, set distance of total move
+        distance = int(quantity)
+    position = drawAction(canvas,color,position,distance,angle)
+    return (position,angle,color)
+
 def runSimpleTortoiseProgram(program, winWidth=500, winHeight=500):
+    color = 'red' #arbitrary initial color
+    position = (winWidth/2,winHeight/2) #start in middle of screen
+    angle = 0 #start moving directly right
     root = Tk()
     canvas = Canvas(root, width=winWidth, height=winHeight)
     canvas.pack()
-    canvas.create_text(winWidth/2, winHeight/2,
-                       text='Go Tortoise Go!')
+    printTortoiseProgram(canvas, program)
+    commands = program.split('\n') #split the program by new line
+    for command in commands: #read lines one at a time
+        if actionWord(command) == '#':
+            continue #go to next line if line starts as comment
+        elif actionWord(command) == '': #skip if line is blank
+            continue
+        else:
+            (position,angle,color) = tortoiseAction(canvas,command,color,position,angle)
+
     root.mainloop()
 
 def testRunSimpleTortoiseProgram1():
@@ -243,9 +307,9 @@ def testRunSimpleProgram():
 #################################################
 
 def testAll():
-    #testRunSimpleTortoiseProgram()
-    testBestScrabbleScore()
-    testRunSimpleProgram()
+    testRunSimpleTortoiseProgram()
+    #testBestScrabbleScore()
+    #testRunSimpleProgram()
 
 def main():
     bannedTokens = (
