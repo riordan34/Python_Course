@@ -25,22 +25,15 @@ def roundHalfUp(d):
 # Problems
 #################################################
 
-def highScore(s):
-    return s[-1]
-
-def scoreSort(scores):
-    #take list of tupples (word, score) and sort high to low
-    scores = sorted(scores,key=highScore,reverse=True)
-    return scores
-
 def bestScrabbleScore(dictionary, letterScores, hand):
-    i = 0
-    scores = []
-    while (i <  len(dictionary)): #iterate through possible words
-        word = dictionary[i]
+    highScore = 0 
+    highWord = ''
+    highWords = []
+    result = ()
+    for word in dictionary: #iterate through possible words
         handCheck = copy.copy(hand)
         status = True
-        score = 0
+        score = 0 #currentScore
         for letter in word: #check each letter against letters in hand
             if letter in handCheck: #if letter appears in hand
                 #add letterScore to current score
@@ -52,21 +45,22 @@ def bestScrabbleScore(dictionary, letterScores, hand):
                 status = False
                 break
         if (status): #if all letters in dictionary word appear in hand
-            pair = (word,score)
-            scores.append(pair) #add to list of scores
-        i += 1
-    for result in scores:
-        return result
+            if score > highScore: #if score is highest thus far
+                highWord = word #high word is word
+                highScore = score #high score is score
+                for words in highWords: #clear list of high words
+                    highWords.remove(word)
+                highWords.append(word) #start new list with words
+            elif score == highScore:
+                highWords.append(word) #append word to list of high words
+    if (len(highWords) > 1): #if multiple words have same score
+        result = (highWords,highScore) #return list of words, score
+    elif (len(highWords) == 1): #if only one high score
+        result = (highWord,highScore) #return one word with score
+    else: # if no words, return None
+        result = None
+    return result
 
-    '''while (i < len(hand)):
-        if hand[i] in dictionary:
-            scoreIndex = string.ascii_lowercase.find(hand[i])
-            pair = (hand[i],letterScores[scoreIndex])
-            scores.append(pair)
-        i+=1
-    scores = sorted(scores,key=highScore)
-    for entry in scores:
-        return entry'''
 ###### Autograded Bonus ########
 # (place non-autograded bonus below #ignore-rest line!) #
 
