@@ -138,20 +138,16 @@ def testRemoveRowAndCol():
     assert(removeRowAndCol([[5,3,8,4],[3,8,6,5],[8,4,5,3],[4,5,3,8]],3,0) == [[3,8,4],[8,6,5],[4,5,3]])
     print("Passed!")
 
-def testIsKnightsTour():
-    print("Testing isKnightsTour()...", end="")
-    assert(isKnightsTour([[1,2],[3,4]]) == False)
-    assert(isKnightsTour([[5,3,8,4],[3,8,4,5],[8,4,5,3],[4,5,3]]) == False)
-    assert(isKnightsTour([[3,22,13,16,5],[12,17,4,21,14],[23,2,15,6,9],[18,11,8,25,20],[1,24,19,10,7]]) == True)
-    assert(isKnightsTour([[7,12,15,20,5],[16,21,6,25,14],[11,8,13,4,19],[22,17,2,9,24],[1,10,23,18,3]]) == True)
-    assert(isKnightsTour([[[1, 4, 7], [6, 9, 2], [3, 8, 5]]]) == False)
-    print("Passed!")
-
-def testNQueensChecker():
-    print("Testing nQueenChecker()...", end="")
-    assert(nQueensChecker([[False,True,False,False],[False,False,False,True],[True,False,False,False],[False,False,True,False]]) == True)
-    assert(nQueensChecker([[False,True,False,False],[False,False,False,True],[True,False,False,False],[False,True,False,False]]) == False)
-    assert(nQueensChecker([[False,True,False,False,False,False,False,False],[False,False,False,True,False,False,False,False],[False,False,False,False,False,True,False,False],[False,False,False,False,False,False,False,True],[False,False,True,False,False,False,False,False],[True,False,False,False,False,False,False,False],[False,False,False,False,False,False,True,False],[False,False,False,False,True,False,False,False]]) == True)
+def testIsLegalSudoku():
+    board1 = [[5, 3, 0, 0, 7, 0, 0, 0, 0], [6, 0, 0, 1, 9, 5, 0, 0, 0], [0, 9, 8, 0, 0, 0, 0, 6, 0], [8, 0, 0, 0, 6, 0, 0, 0, 3], [4, 0, 0, 8, 0, 3, 0, 0, 1], [7, 0, 0, 0, 2, 0, 0, 0, 6], [0, 6, 0, 0, 0, 0, 2, 8, 0], [0, 0, 0, 4, 1, 9, 0, 0, 5], [0, 0, 0, 0, 8, 0, 0, 7, 9]]
+    board2 = [[5, 3, 0, 0, 7, 0, 0, 0, 0], [6, 0, 5, 1, 9, 5, 0, 0, 0], [0, 9, 8, 0, 0, 0, 0, 6, 0], [8, 0, 0, 0, 6, 0, 0, 0, 3], [4, 0, 0, 8, 0, 3, 0, 0, 1], [7, 0, 0, 0, 2, 0, 0, 0, 6], [0, 6, 0, 0, 0, 0, 2, 8, 0], [0, 0, 0, 4, 1, 0, 0, 0, 5], [0, 0, 0, 0, 8, 0, 0, 7, 9]]
+    board3 = [[5, 3, 0, 0, 7, 0, 0, 0, 0], [6, 0, 0, 1, 9, 5, 0, 0, 0], [0, 9, 8, 0, 0, 0, 0, 6, 0], [8, 0, 0, 0, 6, 0, 0, 0, 3], [4, 0, 0, 8, 0, 3, 0, 0, 1], [7, 0, 0, 0, 2, 0, 0, 0, 6], [0, 6, 0, 0, 0, 0, 2, 8, 0], [0, 0, 0, 4, 1, 9, 0, 0, 5], [5, 0, 0, 0, 8, 0, 0, 7, 9]]
+    board4 = [[1,2,3,4], [3,4,1,2], [2,3,4,1], [4,1,2,3]]
+    print("Testing isLegalSudoku()...",end='')
+    assert(isLegalSudoku(board1) == True)
+    assert(isLegalSudoku(board2) == False)
+    assert(isLegalSudoku(board3) == False)
+    assert(isLegalSudoku(board4) == True)
     print("Passed!")
 
 #################################################
@@ -159,6 +155,7 @@ def testNQueensChecker():
 #################################################
 def testAll():
     testRemoveRowAndCol()
+    testIsLegalSudoku()
 
 def main():
     bannedTokens = (
