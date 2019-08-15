@@ -1,6 +1,6 @@
 #Ken Riordan
-#week 4 practice
-#################################################
+#week 5 Homework
+################################################
 
 import cs112_s17_linter
 import math, string, copy
@@ -148,7 +148,8 @@ def init(data):
     data.gameOver = False
     data.roundWinner = 0
     data.gameWinner = 0
-
+    data.results = ['It\'s a Tie, both players awarded 1 point',
+            'Player 1 wins the round','Player 2 wins the round']
 
 def mousePressed(event, data):
     # use event.x and event.y
@@ -186,20 +187,20 @@ def keyPressed(event, data):
 
 def moveMarkerLeft(data):
     if data.markerLeft == data.margin: #if it is on leftmost cell, set left side on last cell
-        data.markerLeft = data.boardWidth + data.margin - data.cellWidth
+        data.markerLeft = data.margin + ((data.cols-1)*data.cellWidth)
     else:
         data.markerLeft -= data.cellWidth
 
 def moveMarkerRight(data):
     #reverse logic of moveMarkerLeft
-    if data.markerLeft == data.boardWidth + data.margin - data.cellWidth:
+    if data.markerLeft == data.margin + ((data.cols-1)*data.cellWidth):
         data.markerLeft = data.margin
     else:
         data.markerLeft += data.cellWidth
 
 def moveMarkerDown(data):
     #if top of marker is on top of last row, move to top of top row
-    if data.markerTop == data.margin + data.boardHeight - data.cellHeight:
+    if data.markerTop == data.margin + ((data.rows - 1)*data.cellHeight):
         data.markerTop  = data.margin
     else:
         data.markerTop += data.cellHeight
@@ -207,12 +208,21 @@ def moveMarkerDown(data):
 def moveMarkerUp(data):
     #reverse logic of moveMarkerDown
     if data.markerTop == data.margin:
-        data.markerTop = data.margin + data.boardHeight - data.cellHeight
+        data.markerTop = data.margin + ((data.rows - 1)*data.cellHeight)
     else:
         data.markerTop -= data.cellHeight
 
 def timerFired(data):
     pass
+
+def drawGrid(canvas,data):
+    for row in range(data.rows):
+        for col in range(data.cols):
+            topLeftXC = data.margin + (col*data.cellWidth)
+            topLeftYC = data.margin + (row*data.cellHeight)
+            bottomRightXC = topLeftXC + data.cellWidth
+            bottomRightYC = topLeftYC + data.cellHeight
+            canvas.create_rectangle(topLeftXC,topLeftYC,bottomRightXC,bottomRightYC)
 
 def getMarkerIndex(data):
     data.markerColIndex = data.markerLeft//data.cellWidth
@@ -274,7 +284,11 @@ def playGame(data):
         p1 = abs(42-data.p1BestTurn)
         p2 = abs(42-data.p2BestTurn)
         data.roundOver = True
-        if p1 < p2:
+        if p1 == p2:
+            data.roundWinner = 0
+            data.p1Score += 1
+            data.p2Score += 1
+        elif p1 < p2:
             data.roundWinner = 1
             data.p1Score += 1
         else:
@@ -304,6 +318,8 @@ def roundReset(data):
     data.roundOver = False
 
 def redrawAll(canvas, data):
+    #draw grid
+    drawGrid(canvas, data)
     #display winner if game over
     if (data.gameOver):
         canvas.create_text(data.width*.5,data.height*.5,
@@ -312,8 +328,8 @@ def redrawAll(canvas, data):
     #display winner if round over
     elif (data.roundOver):
         canvas.create_text(data.width*.5,data.height*.5,
-                text="Player %d wins round.\nHit Return key to start next round" %data.roundWinner,
-                fill='red', font='Helvetic 30 bold')11
+                text="%s.\nHit Return key to start next round"
+                %data.results[data.roundWinner],fill='red', font='Helvetic 30 bold')
     #draw highlighted marker
     canvas.create_rectangle(data.markerLeft,data.markerTop,
             data.markerLeft + data.cellWidth,data.markerTop +
@@ -346,15 +362,7 @@ def redrawAll(canvas, data):
 def run(rows,cols,width=300, height=300):
     def redrawAllWrapper(canvas, data):
         canvas.delete(ALL)
-        #draw the large board
-        canvas.create_rectangle(data.margin,data.margin,
-                data.width-data.margin,data.height-data.margin)
-        #draw in the columns
-        for step in range(data.margin,data.boardWidth,data.cellWidth):
-            canvas.create_line(step,data.margin,step,data.boardHeight+data.margin)
-        for step in range(data.margin,data.boardHeight,data.cellHeight):
-            canvas.create_line(data.margin,step,data.boardWidth+data.margin,step)
-        (col,row) = getMarkerIndex(data)
+        1(col,row) = getMarkerIndex(data)
         for row in range(data.rows):
             yC = data.margin + data.cellHeight*(.5+row) #y-coordinate of where to center text
             for col in range(data.cols):
