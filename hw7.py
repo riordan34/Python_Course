@@ -124,7 +124,7 @@ def init(data):
     data.board = []
     for row in range(data.rows):
         data.board += [[0]*data.cols]
-    data.snake = [(data.rows//2,data.cols//2)] #start in middle [row][col]
+    data.snake = [(data.cols//2,data.rows//2)] #start in middle (x,y)
     data.snakeHead = data.snake[0]
     data.cellSize = data.width/data.rows
     data.gameOver = False
@@ -134,7 +134,7 @@ def init(data):
     data.newFruit = True
     data.fruitRow = 0 #temp assignments
     data.fruitCol = 0
-    data.snakeLength = 1 #units in the snake
+
 
 def mousePressed(event, data):
     #mouse not used in snake game
@@ -142,19 +142,32 @@ def mousePressed(event, data):
 
 def keyPressed(event, data):
     if (data.gameOver):
-        pass
+        if (event.keysym == 'space'):
+            init(data)
     elif (event.keysym == "Left"): #for each direction, start moving and move in direction
-        data.direction = 'left'
-        data.moving = True
+        if data.direction == 'right':
+            data.gameOver = True
+        else:
+            data.direction = 'left'
+            data.moving = True
     elif (event.keysym == "Right"):
-        data.direction = 'right'
-        data.moving = True
+        if data.direction == 'left':
+            data.gameOver = True
+        else:
+            data.direction = 'right'
+            data.moving = True
     elif (event.keysym == "Down"):
-        data.direction = 'down'
-        data.moving = True
+        if data.direction == 'up':
+            data.gameOver = True
+        else:
+            data.direction = 'down'
+            data.moving = True
     elif (event.keysym == "Up"):
-        data.direction = 'up'
-        data.moving = True
+        if data.direction == 'down':
+            data.gameOver = True
+        else:
+            data.direction = 'up'
+            data.moving = True
 
 def timerFired(data):
     if not (data.moving):
@@ -164,41 +177,39 @@ def timerFired(data):
     else:
         gameOver(data)
         data.timer += 1
-        if (data.timer%3 == 0): #move snake every 300 ms
+        if (data.timer%2 == 0): #move snake every 300 ms
             moveSnake(data)
 
 def moveSnake(data):
     if (data.direction == 'left'):
-        newPosition = (data.snakeHead[0],data.snakeHead[1]-1) #move column 1 cell left
+        newPosition = (data.snakeHead[0]-1,data.snakeHead[1]) #move column 1 cell left (x-1,y)
     elif (data.direction == 'right'):
-        newPosition = (data.snakeHead[0],data.snakeHead[1]+1) #move column 1 cell right
+        newPosition = (data.snakeHead[0]+1,data.snakeHead[1]) #move column 1 cell right(x+1,y)
     elif (data.direction == 'down'):
-        newPosition = (data.snakeHead[0]+1,data.snakeHead[1]) #move row 1 cell down
+        newPosition = (data.snakeHead[0],data.snakeHead[1]+1) #move row 1 cell down (x,y+1)
     elif (data.direction == 'up'):
-        newPosition = (data.snakeHead[0]-1,data.snakeHead[1]) #move row 1 cell up
+        newPosition = (data.snakeHead[0],data.snakeHead[1]-1) #move row 1 cell up (x,y-1)
     data.snake.insert(0,newPosition)
     data.snakeHead = data.snake[0]
-    eatFruit(data)
-    if not (data.newFruit):
+    if data.snakeHead in data.snake[1:]:
+        data.gameOver = True
+    elif (data.snakeHead[0] == data.fruitRow) and (data.snakeHead[1] == data.fruitCol):
+        data.board[data.fruitRow][data.fruitCol] = 0
+        data.newFruit = True
+
+    else:
         data.snake.pop() #if a Fruit is not eaten, then remove the last entry in snake
 
 def drawSnake(canvas,data):
     for entry in data.snake:
-        x1 = data.cellSize * entry[1] #cell size times col
-        y1 = data.cellSize * entry[0] #cel size times row
+        x1 = data.cellSize * entry[0] #cell size times col
+        y1 = data.cellSize * entry[1] #cel size times row
         x2 = x1 + data.cellSize
         y2 = y1 + data.cellSize
         canvas.create_oval(x1,y1,x2,y2,fill='black')
 
-
-def eatFruit(data):
-    if (data.snakeHead[0] == data.fruitRow) and (data.snakeHead[1] == data.fruitCol):
-        data.board[data.fruitRow][data.fruitCol] = 0
-        data.newFruit = True
-
 def drawBoard(canvas,data):
     placeFruit(canvas,data)
-    data.newFruit = False
     for row in  range(data.rows):
         for col in range(data.cols):
             if data.board[row][col] == 1:
@@ -212,13 +223,13 @@ def gameOver(data):
     if (data.snakeHead[1] < 0):
         data.moving = False
         data.gameOver = True
-    elif (data.snakeHead[1] > data.cols):
+    elif (data.snakeHead[1] > data.cols-1):
         data.moving = False
         data.gameOver = True
     elif (data.snakeHead[0] < 0):
         data.moving = False
         data.gameOver = True
-    elif (data.snakeHead[0] > data.rows):
+    elif (data.snakeHead[0] > data.rows-1):
         data.moving = False
         data.gameOver = True
 
@@ -226,14 +237,24 @@ def placeFruit(canvas,data):
     if (data.newFruit):
         row = random.randint(0,data.rows-1)
         col = random.randint(0,data.cols-1)
-        data.board[row][col] = 1
-        data.fruitRow = row
-        data.fruitCol = col
+        if (col,row) in snake:
+            placeFruit(canvas,data)
+        else:
+            data.board[row][col] = 1
+            data.fruitRow = row
+            data.fruitCol = col
+            data.newFruit = False
 
 def drawGameOver(canvas,data):
     canvas.create_text(data.width/2,data.height/2,text='GAME OVER',fill = 'red',font = 'Arial 34 bold')
+    canvas.create_text(data.width/2,data.height/2 + 50,text='Press \"Space\" to play again',font = 'Arial 20 bold')
+
+def drawStartMsg(canvas,data):
+    canvas.create_text(data.width/2,data.height/4,text='Press any direction to start',font = 'Arial 20 bold')
 
 def redrawAll(canvas, data):
+    if not (data.moving) and not (data.gameOver):
+        drawStartMsg(canvas,data)
     drawBoard(canvas,data)
     drawSnake(canvas,data)
     if (data.gameOver):
@@ -285,7 +306,6 @@ def run(width=300, height=300):
     root.mainloop()  # blocks until window is closed
     print("bye!")
 
-run(400, 600)
 
 ###############
 #test functions
