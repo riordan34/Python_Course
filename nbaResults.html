@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<title>OK, Cool - Hook 'Em</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href=index.html class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i></a>
+  <a href="index.html#quickpicks" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Quick Picks</a>
+  <a href=nflResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NFL</a>
+  <a href=nbaResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NBA</a>
+  <a href=ncaafResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAF</a>
+  <a href=ncaabResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAB</a>
+ </div>
+
+<!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+    <a href=nflResults.html class="w3-bar-item w3-button">NFL</a>
+    <a href=nbaResults.html class="w3-bar-item w3-button">NBA</a>
+    <a href=ncaafResults.html class="w3-bar-item w3-button">NCAAF</a>
+    <a href=ncaabResults.html class="w3-bar-item w3-button">NCAAB</a>
+  </div>
+</div>
+
+
+<!-- Image Header -->
+<div class="w3-display-container w3-animate-opacity">
+  <img src="./Media/PeakDrew.jpg" alt="cover" style="width:100%;min-height:350px;max-height:600px;">
+</div>
+
+<!-- Today's Picks Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>Today's NBA Picks</h1>
+</div>
+
+<div style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+    </tr>
+    <tr>
+<tr><td>Dec-10</td><td>Wizards @ Hornets</td><td>Under 231</td></tr>
+<tr><td>Dec-10</td><td>Nuggets @ 76ers</td><td>76ers -4.5</td></tr>
+<tr><td>Dec-10</td><td>Nuggets @ 76ers</td><td>Under 205.5</td></tr>
+<tr><td>Dec-10</td><td>Knicks @ Trail Blazers</td><td>Knicks +9</td></tr>
+<tr><td>Dec-10</td><td>Knicks @ Trail Blazers</td><td>Under 219.5</td></tr>
+<tr><td>Dec-10</td><td>Nuggets @ 76ers<br>Hawks @ Heat<br>Knicks @ Trail Blazers</td><td>76ers Moneyline<br>Heat Moneyline<br>Trail Blazers Moneyline (+125)</td></tr>
+
+
+  </table>
+</div>
+
+<!-- Results Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>NBA Results</h1>
+  <h2>Overall: 24-22-1<br>Up 4.23 units</h2>
+</div>
+
+
+<div class="w3-container" style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+      <th>Result</th>
+    </tr>
+    <tr>
+
+<tr><td>Nov-25</td><td>Trail Blazers @ Bulls</td><td>Under 226</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Nets @ Cavaliers</td><td>Nets +0</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Magic @ Pistons</td><td>Magic +4.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Timberwolves @ Hawks</td><td>Timberwolves -4</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Timberwolves @ Hawks</td><td>Under 235.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Hornets @ Heat</td><td>Over 214.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>76ers @ Raptors</td><td>Raptors +1</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Lakers @ Spurs</td><td>Lakers -5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Lakers @ Spurs</td><td>Under 223</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Kings @ Celtics</td><td>Celtics -6.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Kings @ Celtics</td><td>Over 206.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Jazz @ Bucks</td><td>Over 222.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Thunder @ Warriors</td><td>Thunder -6</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Grizzlies @ Pacers<br>Timberwolves @ Hawks<br>Hornets @ Heat<br>Lakers @ Spurs<br>Kings @ Celtics<br>Thunder @ Warriors</td><td>Pacers Moneyline (-455)<br>Timberwolves Moneyline (-175)<br>Heat Moneyline (-625)<br>Lakers Moneyline (-210)<br>Celtics Moneyline (-278)<br>Thunder Moneyline (-240)</td><td>W</td></tr>
+<tr><td>Nov-26</td><td>Clippers @ Mavericks</td><td>Mavericks +2.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Nets @ Celtics</td><td>Over 215</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Magic @ Cavaliers</td><td>Magic -2</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Magic @ Cavaliers</td><td>Over 206</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Jazz @ Pacers</td><td>Jazz +2</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Kings @ 76ers</td><td>Over 210.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Knicks @ Raptors</td><td>Raptors -10.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Knicks @ Raptors</td><td>Over 210.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Heat @ Rockets</td><td>Heat +6</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Hawks @ Bucks</td><td>Under 239.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Clippers @ Grizzlies</td><td>Clippers -7</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Clippers @ Grizzlies</td><td>Under 226.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Wizards @ Suns</td><td>Under 241</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Lakers @ Pelicans</td><td>Lakers -6.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Lakers @ Pelicans</td><td>Under 231</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Thunder @ Trail Blazers</td><td>Thunder +2</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Bulls @ Warriors</td><td>Over 215</td><td>L</td></tr>
+<tr><td>Dec-05</td><td>Nuggets @ Knicks</td><td>Nuggets -8</td><td>W</td></tr>
+<tr><td>Dec-05</td><td>Nuggets @ Knicks</td><td>Over 203</td><td>W</td></tr>
+<tr><td>Dec-05</td><td>Suns @ Pelicans</td><td>Suns +3</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Clippers @ Pacers</td><td>Pacers +0</td><td>L</td></tr>
+<tr><td>Dec-09</td><td>Cavaliers @ Celtics</td><td>Over 215</td><td>L</td></tr>
+<tr><td>Dec-09</td><td>Pistons @ Pelicans</td><td>Pistons +1.5</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Pistons @ Pelicans</td><td>Over 227.5</td><td>L</td></tr>
+<tr><td>Dec-09</td><td>Kings @ Rockets</td><td>Kings +12.5</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Kings @ Rockets</td><td>Over 227</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Magic @ Bucks</td><td>Over 218</td><td>L</td></tr>
+<tr><td>Dec-09</td><td>Timberwolves @ Suns</td><td>Timberwolves +4</td><td>L</td></tr>
+<tr><td>Dec-09</td><td>Timberwolves @ Suns</td><td>Under 234</td><td>Push</td></tr>
+<tr><td>Dec-09</td><td>Thunder @ Jazz</td><td>Thunder +8.5</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Thunder @ Jazz</td><td>Over 212</td><td>L</td></tr>
+<tr><td>Dec-09</td><td>Grizzlies @ Warriors</td><td>Grizzlies +3</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Grizzlies @ Warriors</td><td>Over 218.5</td><td>L</td></tr>
+
+
+  </table>
+</div>
+
+<script>
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<title>OK, Cool - Hook 'Em</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href=index.html class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i></a>
+  <a href="index.html#quickpicks" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Quick Picks</a>
+  <a href=nflResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NFL</a>
+  <a href=nbaResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NBA</a>
+  <a href=ncaafResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAF</a>
+  <a href=ncaabResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAB</a>
+ </div>
+
+<!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+    <a href=nflResults.html class="w3-bar-item w3-button">NFL</a>
+    <a href=nbaResults.html class="w3-bar-item w3-button">NBA</a>
+    <a href=ncaafResults.html class="w3-bar-item w3-button">NCAAF</a>
+    <a href=ncaabResults.html class="w3-bar-item w3-button">NCAAB</a>
+  </div>
+</div>
+
+
+<!-- Image Header -->
+<div class="w3-display-container w3-animate-opacity">
+  <img src="./Media/JakeWhiteHighSchool.jpg" alt="cover" style="width:100%;min-height:350px;max-height:600px;">
+</div>
+
+<!-- Today's Picks Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>Today's NFL Picks</h1>
+</div>
+
+<div style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+    </tr>
+  </table>
+</div>
+
+<!-- Results Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>NFL Results</h1>
+  <h2>Overall: 26-13-2<br>Up 10.88 Units</h2>
+</div>
+
+
+<div class="w3-container" style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+      <th>Result</th>
+    </tr>
+    <tr>
+
+<tr><td>Nov-24</td><td>Giants @ Bears</td><td>Bears -6</td><td>L</td></tr>
+<tr><td>Nov-24</td><td>Buccaneers @ Falcons</td><td>Buccaneers +4</td><td>W</td></tr>
+<tr><td>Nov-24</td><td>Steelers @ Bengals</td><td>Over 38</td><td>L</td></tr>
+<tr><td>Nov-24</td><td>Panthers @ Saints</td><td>Panthers +9.5</td><td>W</td></tr>
+<tr><td>Nov-24</td><td>Raiders @ Jets</td><td>Raiders -3</td><td>L</td></tr>
+<tr><td>Nov-24</td><td>Lions @ Redskins</td><td>Lions -3.5</td><td>L</td></tr>
+<tr><td>Nov-24</td><td>Lions @ Redskins</td><td>Over 41</td><td>L</td></tr>
+<tr><td>Nov-24</td><td>Seahawks @ Eagles</td><td>Seahawks +1</td><td>W</td></tr>
+<tr><td>Nov-24</td><td>Packers @ 49ers</td><td>49ers -3</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Ravens @ Rams</td><td>Ravens -3</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Ravens @ Rams</td><td>Over 46.5</td><td>W</td></tr>
+<tr><td>Nov-28</td><td>Bears @ Lions</td><td>Lions +4</td><td>Push</td></tr>
+<tr><td>Nov-28</td><td>Bears @ Lions</td><td>Over 38.5</td><td>W</td></tr>
+<tr><td>Nov-28</td><td>Bills @ Cowboys</td><td>Bills +7</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Patriots @ Texans</td><td>Patriots -3</td><td>L</td></tr>
+<tr><td>Dec-01</td><td>Redskins @ Panthers</td><td>Redskins +10</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Redskins @ Panthers</td><td>Over 40</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Jets @ Bengals</td><td>Bengals +3.5</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>49ers @ Ravens</td><td>49ers +6</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Buccaneers @ Jaguars</td><td>Buccaneers +1</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Browns @ Steelers</td><td>Steelers +1.5</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Browns @ Steelers</td><td>Over 40</td><td>L</td></tr>
+<tr><td>Dec-01</td><td>Rams @ Cardinals</td><td>Rams -3</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Chargers @ Broncos</td><td>Broncos +2.5</td><td>W</td></tr>
+<tr><td>Dec-01</td><td>Vikings @ Seahawks</td><td>Vikings +3</td><td>L</td></tr>
+<tr><td>Dec-08</td><td>Panthers @ Falcons</td><td>Panthers +3</td><td>L</td></tr>
+<tr><td>Dec-08</td><td>Ravens @ Bills</td><td>Ravens -6</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>Bengals @ Browns</td><td>Over 41</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>Redskins @ Packers</td><td>Over 41.5</td><td>L</td></tr>
+<tr><td>Dec-08</td><td>Broncos @ Texans</td><td>Broncos +8.5</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>Lions @ Vikings</td><td>Lions +12.5</td><td>L</td></tr>
+<tr><td>Dec-08</td><td>Lions @ Vikings</td><td>Over 43</td><td>L</td></tr>
+<tr><td>Dec-08</td><td>49ers @ Saints</td><td>49ers +3</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>Dolphins @ Jets</td><td>Dolphins +5.5</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>Colts @ Buccaneers</td><td>Colts +3</td><td>Push</td></tr>
+<tr><td>Dec-08</td><td>Steelers @ Cardinals</td><td>Steelers -3</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>Chiefs @ Patriots</td><td>Patriots -3</td><td>L</td></tr>
+<tr><td>Dec-08</td><td>Chiefs @ Patriots</td><td>Under 49</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>Titans @ Raiders</td><td>Titans -2.5</td><td>W</td></tr>
+<tr><td>Dec-08</td><td>49ers @ Saints</td><td>49ers Moneyline</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Giants @ Eagles</td><td>Giants +9.5</td><td>W</td></tr>
+
+  </table>
+</div>
+
+<script>
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

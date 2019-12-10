@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<title>OK, Cool - Hook 'Em</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href=index.html class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i></a>
+  <a href="index.html#quickpicks" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Quick Picks</a>
+  <a href=nflResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NFL</a>
+  <a href=nbaResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NBA</a>
+  <a href=ncaafResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAF</a>
+  <a href=ncaabResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAB</a>
+ </div>
+
+<!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+    <a href=nflResults.html class="w3-bar-item w3-button">NFL</a>
+    <a href=nbaResults.html class="w3-bar-item w3-button">NBA</a>
+    <a href=ncaafResults.html class="w3-bar-item w3-button">NCAAF</a>
+    <a href=ncaabResults.html class="w3-bar-item w3-button">NCAAB</a>
+  </div>
+</div>
+
+
+<!-- Image Header -->
+<div class="w3-display-container w3-animate-opacity">
+  <img src="./Media/HighChief.jpg" alt="cover" style="width:100%;min-height:350px;max-height:600px;">
+</div>
+
+<!-- Today's Picks Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>Today's NCAAB Picks</h1>
+</div>
+
+<div style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+    </tr>
+    <tr>
+
+<tr><td>Dec-10</td><td>Bryant @ Fordham</td><td>Bryant +6.5</td></tr>
+<tr><td>Dec-10</td><td>Albany (NY) @ Boston College</td><td>Albany (NY) +6</td></tr>
+<tr><td>Dec-10</td><td>Coppin State @ Davidson</td><td>Coppin State +16.5</td></tr>
+<tr><td>Dec-10</td><td>Coppin State @ Davidson</td><td>Under 148</td></tr>
+<tr><td>Dec-10</td><td>Maryland @ Penn State</td><td>Maryland -1</td></tr>
+<tr><td>Dec-10</td><td>Saint Joseph's @ Temple</td><td>Under 145.5</td></tr>
+<tr><td>Dec-10</td><td>Louisville @ Texas Tech</td><td>Over 130</td></tr>
+<tr><td>Dec-10</td><td>Maryland-Baltimore County @ Towson</td><td>Maryland-Baltimore County +9.5</td></tr>
+<tr><td>Dec-10</td><td>Maryland-Baltimore County @ Towson</td><td>Over 127.5</td></tr>
+<tr><td>Dec-10</td><td>Detroit Mercy @ Notre Dame</td><td>Detroit Mercy +20.5</td></tr>
+<tr><td>Dec-10</td><td>Missouri-Kansas City @ McNeese State</td><td>Missouri-Kansas City +0</td></tr>
+<tr><td>Dec-10</td><td>Missouri-Kansas City @ McNeese State</td><td>Over 139</td></tr>
+<tr><td>Dec-10</td><td>Green Bay @ Central Florida</td><td>Under 157.5</td></tr>
+<tr><td>Dec-10</td><td>Grambling @ Louisiana-Monroe</td><td>Grambling +6.5</td></tr>
+<tr><td>Dec-10</td><td>Grambling @ Louisiana-Monroe</td><td>Over 136.5</td></tr>
+<tr><td>Dec-10</td><td>Milwaukee @ Kansas</td><td>Milwaukee +26</td></tr>
+<tr><td>Dec-10</td><td>Milwaukee @ Kansas</td><td>Over 138</td></tr>
+<tr><td>Dec-10</td><td>Indiana @ Connecticut</td><td>Indiana -3</td></tr>
+<tr><td>Dec-10</td><td>Nevada @ Brigham Young</td><td>Nevada +8</td></tr>
+<tr><td>Dec-10</td><td>Nevada @ Brigham Young</td><td>Under 153.5</td></tr>
+<tr><td>Dec-10</td><td>Northern Iowa @ Colorado</td><td>Northern Iowa +9.5</td></tr>
+<tr><td>Dec-10</td><td>Northern Iowa @ Colorado</td><td>Over 125.5</td></tr>
+<tr><td>Dec-10</td><td>South Dakota State @ Colorado State</td><td>South Dakota State +7</td></tr>
+<tr><td>Dec-10</td><td>South Dakota State @ Colorado State</td><td>Under 144.5</td></tr>
+<tr><td>Dec-10</td><td>Butler @ Baylor</td><td>Butler +5</td></tr>
+
+
+
+  </table>
+</div>
+
+<!-- Results Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>NCAAB Results</h1>
+  <h2>Overall: 50-48-2<br>Down -2.55 Units</h2>
+</div>
+
+
+<div style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+      <th>Result</th>
+    </tr>
+    <tr>
+
+<tr><td>Nov-25</td><td>Colorado State @ New Mexico State</td><td>Colorado State +4</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Colorado State @ New Mexico State</td><td>Over 136.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Northeastern @ South Alabama</td><td>Northeastern -2.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Northeastern @ South Alabama</td><td>Over 141.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Yale @ Western Michigan</td><td>Yale -8</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Yale @ Western Michigan</td><td>Over 136</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Drake @ Miami (OH)</td><td>Drake -4.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Drake @ Miami (OH)</td><td>Over 139.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Loyola (IL) @ South Florida</td><td>Loyola (IL) -2</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Loyola (IL) @ South Florida</td><td>Over 127.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Seattle @ Bucknell</td><td>Seattle +3.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Seattle @ Bucknell</td><td>Over 142.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Georgia @ Dayton</td><td>Over 151.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Virginia Tech @ Michigan State</td><td>Virginia Tech +11.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Virginia Tech @ Michigan State</td><td>Over 132.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>George Mason @ Old Dominion</td><td>Over 126</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Wright State @ Weber State</td><td>Wright State -9</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Wright State @ Weber State</td><td>Over 141</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Loyola (MD) @ IUPUI</td><td>Under 139.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Pittsburgh @ Kansas State</td><td>Pittsburgh +4</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Pittsburgh @ Kansas State</td><td>Over 115</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Chattanooga @ Tennessee</td><td>Over 137.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Arkansas @ Georgia Tech</td><td>Arkansas -1.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Arkansas @ Georgia Tech</td><td>Under 139.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Butler @ Missouri</td><td>Butler +1</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Richmond @ Wisconsin</td><td>Richmond +6</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Richmond @ Wisconsin</td><td>Over 131.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Murray State @ La Salle</td><td>Murray State -6.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Murray State @ La Salle</td><td>Under 137.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Washington State @ Nebraska</td><td>Washington State -1</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Washington State @ Nebraska</td><td>Under 142.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Oakland @ Northern Illinois</td><td>Oakland +4.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Southern @ Omaha</td><td>Southern +14.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Southern @ Omaha</td><td>Over 140.5</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Louisiana Tech @ Indiana</td><td>Over 139</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Northwestern @ Bradley</td><td>Bradley -2</td><td>L</td></tr>
+<tr><td>Nov-25</td><td>Northwestern @ Bradley</td><td>Over 128.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Stanford @ Oklahoma</td><td>Stanford +5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Tennessee State @ San Diego State</td><td>Tennessee State +19.5</td><td>W</td></tr>
+<tr><td>Nov-25</td><td>Tennessee State @ San Diego State</td><td>Over 133.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Niagara @ Purdue-Fort Wayne</td><td>Purdue-Fort Wayne -8.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Gonzaga @ Southern MissISSIPPI</td><td>Over 135.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Oklahoma State @ Syracuse</td><td>Syracuse -3</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Oklahoma State @ Syracuse</td><td>Over 126</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Southeast Missouri State @ Cal State Fullerton</td><td>Over 135.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>New Mexico State @ George Mason</td><td>George Mason +5.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>New Mexico State @ George Mason</td><td>Over 131.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Pittsburgh @ Northwestern</td><td>Northwestern +2</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Pittsburgh @ Northwestern</td><td>Over 119</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Wichita State @ West Virginia</td><td>Over 128</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Hofstra @ San Diego</td><td>Hofstra -1</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Portland State @ UC-Santa Barbara</td><td>Portland State +8.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Portland State @ UC-Santa Barbara</td><td>Over 151</td><td>Push</td></tr>
+<tr><td>Nov-27</td><td>South Dakota @ California Baptist</td><td>South Dakota -1</td><td>Push</td></tr>
+<tr><td>Nov-27</td><td>San Jose State @ Oregon State</td><td>San Jose State +20.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>San Jose State @ Oregon State</td><td>Over 144</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Virginia Tech @ Brigham Young</td><td>Virginia Tech -2.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Virginia Tech @ Brigham Young</td><td>Under 136.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Loyola (IL) @ Old Dominion</td><td>Old Dominion +4</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Loyola (IL) @ Old Dominion</td><td>Over 120</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Northeastern @ Weber State</td><td>Northeastern -7</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Northeastern @ Weber State</td><td>Over 132.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Michigan @ Iowa State</td><td>Michigan -3.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Michigan @ Iowa State</td><td>Over 134.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Tennessee-Martin @ Boston University</td><td>Boston University -5.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Tennessee-Martin @ Boston University</td><td>Over 146</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Drake @ Murray State</td><td>Murray State +2</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Drake @ Murray State</td><td>Over 135.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Colorado State @ Washington State</td><td>Washington State +2.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Colorado State @ Washington State</td><td>Over 139.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Saint Louis @ Boston College</td><td>Saint Louis +2</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Saint Louis @ Boston College</td><td>Over 131.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Charlotte @ Georgia State</td><td>Charlotte +6</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Charlotte @ Georgia State</td><td>Over 134.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>North Carolina @ Alabama</td><td>Under 150.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Michigan State @ UCLA</td><td>Under 147.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Gardner-Webb @ Northern Colorado</td><td>Northern Colorado -1.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Gardner-Webb @ Northern Colorado</td><td>Over 126.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Texas-Arlington @ Furman</td><td>Over 137.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Manhattan @ Rhode Island</td><td>Manhattan +14</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Manhattan @ Rhode Island</td><td>Over 131.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Denver @ Santa Clara</td><td>Santa Clara -14.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Denver @ Santa Clara</td><td>Over 141.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Mississippi @ Penn State</td><td>Over 135.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>South Florida @ Nebraska</td><td>Nebraska +3</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>South Florida @ Nebraska</td><td>Under 135.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Dayton @ Kansas</td><td>Kansas -4.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Dayton @ Kansas</td><td>Over 147.5</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Miami (OH) @ Wright State</td><td>Miami (OH) +4.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Miami (OH) @ Wright State</td><td>Over 142</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>Kansas State @ Bradley</td><td>Bradley +6</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>Kansas State @ Bradley</td><td>Over 119</td><td>W</td></tr>
+<tr><td>Nov-27</td><td>South Carolina @ Northern Iowa</td><td>South Carolina -1.5</td><td>L</td></tr>
+<tr><td>Nov-27</td><td>South Carolina @ Northern Iowa</td><td>Over 127</td><td>W</td></tr>
+<tr><td>Dec-05</td><td>Elon @ High Point</td><td>Elon -3</td><td>L</td></tr>
+<tr><td>Dec-05</td><td>Northern Illinois @ Saint Mary's (CA)</td><td>Northern Illinois +14.5</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Columbia @ Duquesne</td><td>Duquesne -11.5</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Columbia @ Duquesne</td><td>Over 133.5</td><td>W</td></tr>
+<tr><td>Dec-09</td><td>Minnesota @ Iowa</td><td>Minnesota +6</td><td>L</td></tr>
+<tr><td>Dec-09</td><td>Alabama State @ South Dakota</td><td>Over 140</td><td>L</td></tr>
+
+
+
+  </table>
+</div>
+
+<script>
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

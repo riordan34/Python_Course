@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<title>OK, Cool - Hook 'Em</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href=index.html class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i></a>
+  <a href="index.html#quickpicks" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Quick Picks</a>
+  <a href=nflResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NFL</a>
+  <a href=nbaResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NBA</a>
+  <a href=ncaafResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAF</a>
+  <a href=ncaabResults.html class="w3-bar-item w3-button w3-hide-small w3-hover-white">NCAAB</a>
+ </div>
+
+<!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+    <a href=nflResults.html class="w3-bar-item w3-button">NFL</a>
+    <a href=nbaResults.html class="w3-bar-item w3-button">NBA</a>
+    <a href=ncaafResults.html class="w3-bar-item w3-button">NCAAF</a>
+    <a href=ncaabResults.html class="w3-bar-item w3-button">NCAAB</a>
+  </div>
+</div>
+
+
+<!-- Image Header -->
+<div class="w3-display-container w3-animate-opacity">
+  <img src="./Media/GoobPuebs.jpg" alt="cover" style="width:100%;min-height:350px;max-height:600px;">
+</div>
+
+<!-- Today's Picks Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>Today's NCAAF Picks</h1>
+</div>
+
+<div style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+    </tr>
+    <tr>
+
+  </table>
+</div>
+
+<!-- Results Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+  <h1>NCAAF Results</h1>
+  <h2>Overall: 35-31-3<br>Up 0.82 Units</h2>
+</div>
+
+
+<div class="w3-container" style="overflow-x:auto">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Game</th>
+      <th>Bet</th>
+      <th>Result</th>
+    </tr>
+    <tr>
+
+<tr><td>Nov-20</td><td>Akron @ Miami (OH)</td><td>Akron +31</td><td>W</td></tr>
+<tr><td>Nov-20</td><td>Akron @ Miami (OH)</td><td>Over 43</td><td>L</td></tr>
+<tr><td>Nov-20</td><td>Toledo @ Buffalo</td><td>Buffalo -7.5</td><td>W</td></tr>
+<tr><td>Nov-21</td><td>North Carolina State @ Georgia Tech</td><td>North Carolina State +1.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Colorado State @ Wyoming</td><td>Wyoming -6.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Ball State @ Kent State</td><td>Ball State -3.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>East Carolina @ Connecticut</td><td>Connecticut +14</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>East Carolina @ Connecticut</td><td>Under 66</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>UCF @ Tulane</td><td>UCF -6</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Brigham Young @ Massachusetts</td><td>Brigham Young -40.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Brigham Young @ Massachusetts</td><td>Under 69</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Penn State @ Ohio State</td><td>Ohio State -18</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Oklahoma State @ West Virginia</td><td>Oklahoma State -5.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Oklahoma State @ West Virginia</td><td>Over 55</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Illinois @ Iowa</td><td>Iowa -15</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Illinois @ Iowa</td><td>Under 46.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Kansas @ Iowa State</td><td>Iowa State -24.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Minnesota @ Northwestern</td><td>Minnesota -13.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Minnesota @ Northwestern</td><td>Over 39.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>South Alabama @ Georgia State</td><td>Georgia State -10.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>South Alabama @ Georgia State</td><td>Over 56.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Air Force @ New Mexico</td><td>Air Force -22</td><td>Push</td></tr>
+<tr><td>Nov-22</td><td>Texas State @ Appalachian State</td><td>Appalachian State -29</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Texas State @ Appalachian State</td><td>Over 52</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Boston College @ Notre Dame</td><td>Notre Dame -19.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Georgia Southern @ Arkansas State</td><td>Arkansas State -1</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Georgia Southern @ Arkansas State</td><td>Over 56</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Louisiana Tech @ UAB</td><td>Louisiana Tech +6</td><td>Push</td></tr>
+<tr><td>Nov-22</td><td>UCLA @ USC</td><td>USC -13.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Marshall @ Charlotte</td><td>Marshall -7</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Michigan @ Indiana</td><td>Michigan -9</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Texas @ Baylor</td><td>Baylor -5.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>North Texas @ Rice</td><td>North Texas -6</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Purdue @ Wisconsin</td><td>Wisconsin -24</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>California @ Stanford</td><td>California +3</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>California @ Stanford</td><td>Over 39.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>San Jose State @ UNLV</td><td>San Jose State -6</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>San Jose State @ UNLV</td><td>Under 65</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Memphis @ South Florida</td><td>Memphis -14.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Old Dominion @ Middle Tennessee State</td><td>Old Dominion +15</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Old Dominion @ Middle Tennessee State</td><td>Over 47</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Troy @ Louisiana</td><td>Louisiana -13.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Coastal Carolina @ Louisiana-Monroe</td><td>Coastal Carolina +6</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Florida Atlantic @ UTSA</td><td>Florida Atlantic -20</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Kansas State @ Texas Tech</td><td>Kansas State +2</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Temple @ Cincinnati</td><td>Cincinnati -10.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Miami (FL) @ Florida International</td><td>Miami (FL) -18.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Arkansas @ LSU</td><td>LSU -44</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Oregon @ Arizona State</td><td>Oregon -15</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Duke @ Wake Forest</td><td>Wake Forest -7</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Duke @ Wake Forest</td><td>Over 50</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Tennessee @ Missouri</td><td>Under 45</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Texas Christian @ Oklahoma</td><td>Oklahoma -18.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Oregon State @ Washington State</td><td>Oregon State +11.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Utah @ Arizona</td><td>Utah -22.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Washington @ Colorado</td><td>Washington -14.5</td><td>L</td></tr>
+<tr><td>Nov-22</td><td>Boise State @ Utah State</td><td>Boise State -7.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>Nevada @ Fresno State</td><td>Over 51.5</td><td>W</td></tr>
+<tr><td>Nov-22</td><td>San Diego State @ Hawaii</td><td>San Diego State +3</td><td>Push</td></tr>
+<tr><td>Nov-26</td><td>Ohio @ Akron</td><td>Ohio -27.5</td><td>W</td></tr>
+<tr><td>Nov-26</td><td>Ohio @ Akron</td><td>Over 53</td><td>W</td></tr>
+<tr><td>Nov-26</td><td>Western Michigan @ Northern Illinois</td><td>Western Michigan -9</td><td>L</td></tr>
+<tr><td>Nov-26</td><td>Western Michigan @ Northern Illinois</td><td>Over 51</td><td>L</td></tr>
+<tr><td>Dec-07</td><td>Louisiana @ Appalachian State</td><td>Louisiana +6.5</td><td>L</td></tr>
+<tr><td>Dec-07</td><td>UAB @ Florida Atlantic</td><td>Florida Atlantic -7.5</td><td>W</td></tr>
+<tr><td>Dec-07</td><td>Cincinnati @ Memphis</td><td>Memphis -9.5</td><td>L</td></tr>
+<tr><td>Dec-07</td><td>Hawaii @ Boise State</td><td>Boise State -14</td><td>W</td></tr>
+<tr><td>Dec-07</td><td>Virginia @ Clemson</td><td>Clemson -28</td><td>W</td></tr>
+<tr><td>Dec-07</td><td>Wisconsin @ Ohio State</td><td>Ohio State -16.5</td><td>L</td></tr>
+
+
+  </table>
+</div>
+
+<script>
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
